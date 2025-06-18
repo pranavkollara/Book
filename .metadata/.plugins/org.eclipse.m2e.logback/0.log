@@ -1,0 +1,58 @@
+2025-06-18 09:22:19,586 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is not available. Remote download required.
+2025-06-18 09:23:51,649 [Worker-37: Configuring project java-backend] INFO  o.e.m.jdt.internal.UnitTestSupport - Updating BookApplicationTests from maven configuration
+2025-06-18 09:23:51,817 [Worker-37: Configuring project java-backend] INFO  o.e.m.jdt.internal.UnitTestSupport - Updating UserApplicationTests from maven configuration
+2025-06-18 09:23:51,877 [Worker-37: Configuring project java-backend] INFO  o.e.m.jdt.internal.UnitTestSupport - Updating WishlistApplicationTests from maven configuration
+2025-06-18 09:23:59,128 [Worker-20: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:Auth:0.0.1-SNAPSHOT @ C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Auth\pom.xml.
+2025-06-18 09:23:59,128 [Worker-36: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:Auth:0.0.1-SNAPSHOT @ C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Auth\pom.xml.
+2025-06-18 09:24:27,873 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-06-18 09:24:27,924 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-06-18 09:24:27,934 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Auth\src\test\resources
+2025-06-18 09:24:28,861 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-06-18 09:24:28,865 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-06-18 09:24:28,871 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Auth\src\test\resources
+2025-06-18 09:24:29,985 [Worker-2: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:Book:0.0.1-SNAPSHOT @ C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Book\pom.xml.
+2025-06-18 09:24:32,525 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-06-18 09:24:32,570 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-06-18 09:24:32,579 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Book\src\test\resources
+2025-06-18 09:24:33,418 [Worker-2: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:Eureka:0.0.1-SNAPSHOT @ C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Eureka\pom.xml.
+2025-06-18 09:24:41,994 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-06-18 09:24:42,033 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-06-18 09:24:42,042 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Eureka\src\test\resources
+2025-06-18 09:24:43,017 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-06-18 09:24:43,020 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-06-18 09:24:43,026 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Book\src\test\resources
+2025-06-18 09:24:43,296 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-06-18 09:24:43,300 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-06-18 09:24:43,310 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Eureka\src\test\resources
+2025-06-18 09:24:43,361 [Worker-3: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:Auth:0.0.1-SNAPSHOT @ C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Auth\pom.xml.
+2025-06-18 09:24:44,189 [Worker-33: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:Gateway:0.0.1-SNAPSHOT @ C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Gateway\pom.xml.
+2025-06-18 09:24:51,015 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-06-18 09:24:51,053 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-06-18 09:24:51,062 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Gateway\src\test\resources
+2025-06-18 09:24:51,760 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-06-18 09:24:51,765 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-06-18 09:24:51,774 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Gateway\src\test\resources
+2025-06-18 09:24:52,869 [Worker-41: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:Post:0.0.1-SNAPSHOT @ C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Post\pom.xml.
+2025-06-18 09:24:57,117 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-06-18 09:24:57,180 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-06-18 09:24:57,188 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Post\src\test\resources
+2025-06-18 09:24:57,929 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-06-18 09:24:57,933 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-06-18 09:24:57,941 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Post\src\test\resources
+2025-06-18 09:24:58,188 [Worker-8: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:Auth:0.0.1-SNAPSHOT @ C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Auth\pom.xml.
+2025-06-18 09:24:59,001 [Worker-3: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:Wishlist:0.0.1-SNAPSHOT @ C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\User\pom.xml.
+2025-06-18 09:25:02,018 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-06-18 09:25:02,075 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-06-18 09:25:02,086 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\User\src\test\resources
+2025-06-18 09:25:02,752 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-06-18 09:25:02,752 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-06-18 09:25:02,760 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\User\src\test\resources
+2025-06-18 09:25:03,607 [Worker-38: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:Wishlist:0.0.1-SNAPSHOT @ C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Wishlist\pom.xml.
+2025-06-18 09:25:05,976 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-06-18 09:25:06,016 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-06-18 09:25:06,025 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Wishlist\src\test\resources
+2025-06-18 09:25:07,553 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-06-18 09:25:07,556 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-06-18 09:25:07,562 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Wishlist\src\test\resources
+2025-06-18 09:25:08,194 [Worker-37: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:Auth:0.0.1-SNAPSHOT @ C:\Users\psayo\OneDrive\Desktop\JavaProject\java-backend\Auth\pom.xml.
+2025-06-18 09:26:48,987 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
