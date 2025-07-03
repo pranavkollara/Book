@@ -12,9 +12,28 @@ public class Review {
 	private String userId;
 	private String username;
 	private String reviewDesc;
+	private String imageUrl;
+	private int rating;
+	
 	
 	public Review() {
 		
+	}
+	
+	public String getImageUrl() {
+		return this.imageUrl;
+	}
+	
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	
+	public int getRating() {
+		return this.rating;
+	}
+	
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 	
 	public String getReviewId() {

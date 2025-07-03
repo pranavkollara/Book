@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.Model.Author;
 import com.example.Model.User;
+import com.example.Service.AuthorService;
 import com.example.Service.EmailService;
 import com.example.Service.UserService;
 
@@ -28,6 +30,9 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	AuthorService authorService;
 	
 	@Autowired
 	EmailService emailService;
@@ -52,6 +57,10 @@ public class UserController {
 		return ResponseEntity.ok(userService.getUser(principal.getName()));
 	}
 	
+	@GetMapping("/getAuthor")
+	public ResponseEntity<Author> getAuthor(Principal principal){
+		return ResponseEntity.ok(authorService.getAuthor(principal.getName()));
+	}
 	
 		   
 	
@@ -82,6 +91,14 @@ public class UserController {
 		}
 	}
 	
+	@GetMapping("/allAuthors")
+	public ResponseEntity<List<Author>> getAllAuthors(){
+		return ResponseEntity.ok(authorService.getAllAuthors());
+	}
 	
+	@PostMapping("/addAuthor")
+	public String addAuthor(@RequestBody Author author) {
+		return authorService.addAuthor(author);
+	}
 	
 }

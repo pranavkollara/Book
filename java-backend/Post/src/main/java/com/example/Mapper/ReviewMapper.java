@@ -9,6 +9,8 @@ public class ReviewMapper {
 		ReviewDTO dto = new  ReviewDTO();
 		dto.setReview(review.getReviewDesc());
 		dto.setUsername(review.getUsername());
+		dto.setImageUrl(review.getImageUrl());
+		dto.setRating(review.getRating());
 		return dto;
 	}
 	

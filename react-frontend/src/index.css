@@ -1,0 +1,31 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Chewy&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Dancing+Script&family=Edu+NSW+ACT+Hand+Pre:wght@400..700&family=Edu+QLD+Hand:wght@400..700&family=Lavishly+Yours&family=Love+Light&family=Mea+Culpa&family=Moon+Dance&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rye&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Teachers:ital,wght@0,400..800;1,400..800&family=The+Girl+Next+Door&display=swap');
+@import "tailwindcss";
+@plugin "daisyui";
+
+@font-face {
+  font-family: 'seasonsfont';
+  src: url('/assests/seasonsfont.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@theme {
+  --font-chewy: "Chewy", sans-serif; 
+  --font-dancing-script: "Dancing Script", cursive;
+  --font-poppins: "Poppins", sans-serif;
+  --font-amatic-sc: "Amatic SC", cursive;
+  --font-moon-dance: "Moon Dance", cursive;
+  --font-spectral: "Spectral", serif;
+  --font-edu-qld-hand: "Edu QLD Hand", cursive;
+  --font-edu-nsw-act-hand-pre: "Edu NSW ACT Hand Pre", cursive;
+  --font-teachers: "Teachers", cursive;
+  --font-dm-sans: "DM Sans", sans-serif;
+  --font-seasons: "seasonsfont", cursive;
+  --font-rye: "Rye", cursive;
+  --font-the-girl-next-door:"The Girl Next Door", cursive;
+  --font-lavishly-yours: "Lavishly Yours", cursive;
+  --font-mea-culpa: "Mea Culpa", cursive;
+  --font-love-light: "Love Light", cursive;
+}

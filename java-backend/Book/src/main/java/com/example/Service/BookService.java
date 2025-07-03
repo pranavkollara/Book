@@ -27,6 +27,13 @@ public class BookService {
 	}
 	
 	@Transactional
+	public String addBooks(List<Book> book) {
+		book.forEach(b->bookRepo.save(b));
+		
+		return book.size() +"added to db";
+	}
+	
+	@Transactional
 	public Book getBookById(String bookId) {
 		return bookRepo.findById(bookId).orElseThrow();
 	}
@@ -69,6 +76,12 @@ public class BookService {
 	public List<Book> getBooksByAuthorName(String authorName){
 		List<Book> list = bookRepo.findAll().stream().filter(e->e.getAuthorName().contains(authorName)).toList();
 		return list;
+	}
+	
+	@Transactional
+	public List<Book> getBooksByName(String name){
+		
+		return bookRepo.findByBookNameContainingIgnoreCase(name);
 	}
 	
 	@Transactional
@@ -130,6 +143,8 @@ public class BookService {
 	public ArrayList<String> getReviewIdsByBookId(String bookId){
 		return bookRepo.findById(bookId).orElseThrow().getReviewIds();
 	}
+	
+	
 	
 	
 }

@@ -29,6 +29,14 @@ public class BookController {
 		bookService.addBook(book);
 		return ResponseEntity.ok(book);
 	}
+	
+	
+	@PostMapping("/addBooks") //ADMIN
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<String> addBook(@RequestBody List<Book> book) {
+		
+		return ResponseEntity.ok(bookService.addBooks(book));
+	}
 
 	@GetMapping("/getBookById/{id}")
 	public ResponseEntity<Book> getBookById(@PathVariable String id) {
@@ -67,6 +75,14 @@ public class BookController {
 		return ResponseEntity.ok(bookList);
 	}
 	
+	@GetMapping("/getBooksByName/{name}")
+	public ResponseEntity<List<Book>> getBooksByName(@PathVariable String name) {
+
+		List<Book> bookList = bookService.getBooksByName(name);
+
+		return ResponseEntity.ok(bookList);
+	}
+			
 	@GetMapping("/getBookByGenreTopFive/{genre}")
 	public ResponseEntity<List<Book>> getBookByGenreTopFive(@PathVariable String genre) {
 
@@ -122,4 +138,6 @@ public class BookController {
 	public ResponseEntity<List<String>> getReviewIdsByBookId(@PathVariable String bookId){
 		return ResponseEntity.ok(bookService.getReviewIdsByBookId(bookId));
 	}
+	
+	
 }

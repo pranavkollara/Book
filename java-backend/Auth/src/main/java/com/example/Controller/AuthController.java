@@ -1,11 +1,17 @@
 package com.example.Controller;
 
+import java.security.Principal;
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +23,6 @@ import com.example.Service.JwtService;
 import com.example.Service.UserService;
 
 @RestController
-
 public class AuthController {
 
 	@Autowired
@@ -57,6 +62,16 @@ public class AuthController {
 		}
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
 		
+	}
+	
+	@GetMapping("/userRole/{username}")
+	public Collection<? extends GrantedAuthority> userRole(@PathVariable String username){
+		return userService.loadUserByUsername(username).getAuthorities();
+	}
+	
+	@GetMapping("/loadUser/{username}")
+	public ResponseEntity<UserDetails> loadUser(@PathVariable String username){
+		return ResponseEntity.ok(userService.loadUserByUsername(username));
 	}
 	
 	
