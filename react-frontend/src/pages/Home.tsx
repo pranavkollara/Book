@@ -121,10 +121,8 @@ export default function Home() {
       </div>
       <div className="h-fit">
         
-        <div className="w-full flex flex-row items-center relative justify-around -translate-x-20 pb-20">
-          <div className="text-5xl font-the-girl-next-door font-bold text-wrap w-60 text-center translate-x-[calc(8.75rem+50%)] ">FOLLOW THESE TRENDING AUTHORS</div>
-          <div><img src="/assests/homearrow.png" className="h-40 rotate-y-180 translate-x-35 -translate-y-50"></img></div>
-          <div className="bg-[#0097b254] w-1/2 h-full rounded-lg ml-28 p-4 ">
+        <div className="w-full flex flex-row items-center justify-center relative justify-around  pb-20">
+          <div className="bg-[#0097b254] w-1/2 h-full rounded-lg p-4 ">
             <div className="flex gap-2 justify-center">
               <img src="/assests/trending.png" className="h-15 -translate-y-2"></img>
               <h1 className="text-white text-center font-rye text-5xl">

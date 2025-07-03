@@ -46,6 +46,12 @@ public class AuthController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
+	@GetMapping("/verifyAdmin")
+	public boolean verifyAdmin() {
+		return true;
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/registerAdmin")
 	public ResponseEntity<String> registerAdmin(@RequestBody AuthRequest authReq) {
 	return ResponseEntity.ok(userService.createAdmin(authReq.getUsername(), authReq.getPassword()));

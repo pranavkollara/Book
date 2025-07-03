@@ -109,9 +109,9 @@ export default function Post() {
 
           </div>
           
-          <div className="carousel carousel-vertical w-full">
+          <div className="carousel carousel-vertical w-full h-[4rem]">
           {post.comments.map((comment, commentIndex) => (
-            <div key={commentIndex} className="carousel-item h-full flex flex-col items-center ">
+            <div key={commentIndex} className="carousel-item h-full flex flex-col items-center   ">
               <div className="w-4/5 text-lg flex flex-col p-2 justify-center items-center bg-white border-2 border-[#3d1700] rounded-full font-amatic-sc font-semibold">
              {comment.username} : {comment.commentDesc}
             </div>

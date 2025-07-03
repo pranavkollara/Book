@@ -3,7 +3,6 @@ import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-d
 import { AuthProvider } from './auth/AuthContext'
 import Login from './pages/Login'
 import ProtectedRoutes from './auth/ProtectedRoutes'
-import Dashboard from './pages/Dashboard'
 import Register from './pages/Register'
 import Home from './pages/Home'
 import Genres from './pages/Genres'
@@ -15,6 +14,7 @@ import CreatePost from './pages/CreatePost'
 import Wishlist from './pages/Wishlist'
 import Post from './pages/Post'
 import Settings from './pages/Settings'
+import Admin from './pages/Admin'
 
 
 export default function App() {
@@ -23,7 +23,7 @@ export default function App() {
               <ScrollToTop></ScrollToTop>
         <AuthProvider>
             <Routes>
-                <Route path="/" element={<Navigate to={"/dashboard"} /> } />
+             
                 <Route path="/login" element={<Login></Login>} />
                 <Route path="/signup" element={<Register></Register>} />
                 <Route path="/home" element={<Home></Home>} />
@@ -33,6 +33,7 @@ export default function App() {
                 <Route path="/authors" element={<Authors></Authors>} />
                 <Route path="/posts" element={<Post></Post>} />
                 <Route path="/settings" element={<Settings></Settings>} />
+                <Route path="/admin" element={<Admin></Admin>} />
                 <Route path="/wishlist" element={<ProtectedRoutes>
                   
                   <Wishlist></Wishlist>
@@ -45,9 +46,7 @@ export default function App() {
                   </ProtectedRoutes>
                 }
                    />
-                <Route path="/dashboard" element={<ProtectedRoutes>
-                    <Dashboard></Dashboard>
-                </ProtectedRoutes>} />
+                
 
             </Routes>
 

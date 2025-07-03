@@ -8,7 +8,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  const { login ,setUserData } = useAuth();
+  const { login, setUserData } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,30 +21,45 @@ export default function Login() {
         },
         {
           headers: {
-            Authorization: `Bearer `, // Basic auth header
+            Authorization: `Bearer `,
           },
         }
       );
 
       console.log(response);
       if (response.status === 200) {
-
         login(response.data);
-        try{
-          const userResponse = await api.get("/user/getUser");
-          if (!userResponse) {
+
+        try {
+          const roleResponse = await api.get("/auth/userRole/" + username,{
+            headers: {
+              Authorization: `Bearer ${response.data}`,
+            },
+          });
+          if (!roleResponse) {
             throw new Error("Network response was not ok");
           }
-          setUserData(userResponse.data);
+          console.log("Role data:", roleResponse.data);
+          if (roleResponse.data[0].authority === "ROLE_ADMIN") {
+            navigate("/admin");
+          } else {
+            try {
+              const userResponse = await api.get("/user/getUser");
+              if (!userResponse) {
+                throw new Error("Network response was not ok");
+              }
+              setUserData(userResponse.data);
 
-          console.log("User data:", userResponse.data);
-          navigate("/home"); // Redirect to dashboard after successful login
-        }catch(error) {
-          console.error("Error fetching user data:", error);
-          alert("Failed to fetch user data. Please try again later.");
+              console.log("User data:", userResponse.data);
+              navigate("/home");
+            } catch (error) {
+              console.error("Error fetching user data:", error);
+              alert("Failed to fetch user data. Please try again later.");
+            }
+          }
+        } catch (error) {
+          console.error("Not a admin", error);
         }
-
-
       }
     } catch (error) {
       console.error("Login failed:", error);
@@ -54,9 +69,7 @@ export default function Login() {
 
   return (
     <div className="bg-[url('/assests/login_background.png')] bg-cover bg-center h-screen flex items-center justify-center">
-      <div className="bg-[#d5f8e3] absolute h-[80vh] w-[30vw] rounded-4xl opacity-70">
-       
-      </div>
+      <div className="bg-[#d5f8e3] absolute h-[80vh] w-[30vw] rounded-4xl opacity-70"></div>
       <div className="absolute top-8 right-210">
         <img
           src="/assests/loginregisterbookie.png"
@@ -123,28 +136,27 @@ export default function Login() {
           />
         </label>
 
-        <a className="link link-hover font-poppins text-gray-400 italic opacity-70">Forgot Password?</a>
-        
+        <a className="link link-hover font-poppins text-gray-400 italic opacity-70">
+          Forgot Password?
+        </a>
+
         <div>
-
-        <button
-          className="btn bg-[#0097b2] rounded-full w-[20vw] font-poppins opacity-70 text-white"
-          onClick={handleSubmit}
+          <button
+            className="btn bg-[#0097b2] rounded-full w-[20vw] font-poppins opacity-70 text-white"
+            onClick={handleSubmit}
           >
-          Login
-        </button>
-        <div className="divider">OR</div>
-        <button
-          className="btn bg-[#0097b2] rounded-full w-[20vw] font-poppins opacity-70 text-white"
-          onClick={() => {
-            navigate.to("/signup"); }
-          }
-        >
-          Sign Up
-        </button>
-            </div>
-
-
+            Login
+          </button>
+          <div className="divider">OR</div>
+          <button
+            className="btn bg-[#0097b2] rounded-full w-[20vw] font-poppins opacity-70 text-white"
+            onClick={() => {
+              navigate.to("/signup");
+            }}
+          >
+            Sign Up
+          </button>
+        </div>
       </div>
     </div>
   );

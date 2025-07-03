@@ -1,9 +1,12 @@
 package com.example.Filter;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -26,6 +29,10 @@ public class JwtFilter extends OncePerRequestFilter {
 	
 	@Autowired
 	UserService userService;
+	
+	public JwtFilter() {
+	    System.out.println("JwtFilter bean created");
+	}
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -35,13 +42,9 @@ public class JwtFilter extends OncePerRequestFilter {
 		String jwt;
 		String username;
 		
-//		String path = request.getServletPath();
-//		if(path.startsWith("/auth/login")) {
-//			filterChain.doFilter(request, response);
-//			return;
-//		}
-		
+		System.out.println(authHeader);
 		if(authHeader==null||!authHeader.startsWith("Bearer ")) {
+			System.out.println("Error");
 			filterChain.doFilter(request, response);
 			return;
 		}
@@ -50,11 +53,27 @@ public class JwtFilter extends OncePerRequestFilter {
 		
 		jwt = authHeader.substring(7);
 		username = jwtService.extractUsername(jwt);
-		
+		System.out.println(SecurityContextHolder.getContext().getAuthentication());
+		System.out.println(username);
 		if(username!=null && SecurityContextHolder.getContext().getAuthentication()==null) {
+			System.out.println("no auth yet");
 			UserDetails user = userService.loadUserByUsername(username);
-			if(jwtService.isTokenValid(username, user)) {
-				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(user,null,user.getAuthorities());
+			System.out.println(jwtService.isTokenValid(jwt, user));
+			if(jwtService.isTokenValid(jwt, user)) {
+				String roles = null;
+				System.out.println("valid token");
+				try {
+					roles = jwtService.extractAllClaims(jwt).get("roles",String.class);
+					System.out.println(roles);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				List<SimpleGrantedAuthority> list = List.of();
+				if(roles!=null&& !roles.isEmpty()) {
+					list = Arrays.stream(roles.split("::")).map(SimpleGrantedAuthority::new).toList();
+				}
+				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(user,null,list);
 				SecurityContextHolder.getContext().setAuthentication(authToken);
 			}
 		}

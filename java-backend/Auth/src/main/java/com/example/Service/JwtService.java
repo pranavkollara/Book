@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -34,9 +35,13 @@ public class JwtService {
 		return Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token).getBody().getSubject();
 	}
 	
+	public Claims extractAllClaims(String token) throws Exception {
+		return Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token).getBody();
+	}
+	
 	public boolean isTokenValid(String token,UserDetails userDetails) {
 		String username = extractUsername(token);
-		return username == userDetails.getUsername();
+		return username.equals(userDetails.getUsername());
 	}
 	
 	

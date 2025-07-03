@@ -1,6 +1,6 @@
 package com.example.Security;
 
-import java.security.AuthProvider;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,8 +32,8 @@ public class SecurityConfig {
 	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeHttpRequests().requestMatchers(HttpMethod.OPTIONS,"/**").permitAll().requestMatchers("/register","/registerAuthor","/login","/swagger-ui.html","/swagger-ui/index.html","/v3/api-docs/**","/swagger-ui/**","/auth/login","/loadUser/**","/userRole/**").permitAll().anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authenticationProvider(authenticationProvider()).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-		
+		http.csrf().disable().authorizeHttpRequests().requestMatchers(HttpMethod.OPTIONS,"/**").permitAll().requestMatchers("/register","/registerAuthor","/login","/swagger-ui.html","/swagger-ui/index.html","/v3/api-docs/**","/swagger-ui/**","/auth/login","/loadUser/**","/userRole/**,/verifyAdmin").permitAll().anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authenticationProvider(authenticationProvider()).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+		System.out.println("🔐 Security filter chain initialized");
 		return http.build();
 	}
 	
