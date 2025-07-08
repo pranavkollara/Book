@@ -22,6 +22,7 @@ export default function App() {
     <Router>
               <ScrollToTop></ScrollToTop>
         <AuthProvider>
+          
             <Routes>
              
                 <Route path="/login" element={<Login></Login>} />

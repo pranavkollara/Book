@@ -3,6 +3,7 @@ import { useAuth } from "../auth/AuthContext";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
+
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +13,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     try {
       const response = await api.post(
         "/auth/login",
@@ -49,12 +51,11 @@ export default function Login() {
                 throw new Error("Network response was not ok");
               }
               setUserData(userResponse.data);
-
               console.log("User data:", userResponse.data);
               navigate("/home");
             } catch (error) {
               console.error("Error fetching user data:", error);
-              alert("Failed to fetch user data. Please try again later.");
+              // alert("Failed to fetch user data. Please try again later.");
             }
           }
         } catch (error) {
@@ -63,7 +64,7 @@ export default function Login() {
       }
     } catch (error) {
       console.error("Login failed:", error);
-      alert("Login failed. Please check your credentials.");
+      // alert("Login failed. Please check your credentials.");
     }
   };
 

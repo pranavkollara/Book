@@ -25,6 +25,8 @@ export default function Book() {
   const params = new URLSearchParams(location.search);
   const bookName = params.get("bookName");
 
+  const [loading, setLoading] = useState(true);
+
   async function fetchBook() {
     try {
       const response = await api.get(`/book/getBookByName/${bookName}`);
@@ -146,9 +148,11 @@ export default function Book() {
 
 
          
-
-          <img src={book.imageUrl} className="h-[30rem] mt-18 ml-22 m-8 border-transparent border-4"></img>
-      
+        
+            <img src={book.imageUrl} className="h-[30rem] w-[20rem] object-cover mt-18 ml-22 m-8 border-transparent border-4" onLoad={() => setLoading(false)} hidden={loading}></img>
+            {loading && (
+              <div className="skeleton h-[30rem] w-[50rem] mt-18 ml-22 m-8 border-4 border-transparent opacity-50"></div>
+            )}
           
           
          

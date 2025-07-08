@@ -7,8 +7,13 @@ import {
 } from "react-router-dom";
 import api from "../api/axios";
 import Navbar from "../components/Navbar";
+import SearchMainBook from "../components/SearchMainBook";
+import SimilarBook from "../components/SimilarBook";
 
 export default function Search() {
+
+  const [loading, setLoading] = useState(true);
+
   const location = useLocation();
   const [param] = useSearchParams();
 
@@ -58,7 +63,7 @@ export default function Search() {
       <div className="bg-[url('/assests/genre_background.png')] opacity-80 bg-center h-full absolute inset-0"></div>
       <Navbar></Navbar>
       <div className="flex flex-col pr-4 relative z-10">
-        <h1 className="text-7xl font-seasons text-[#053827] font-bold p-10">
+        <h1 className="text-7xl font-seasons text-[#053827] font-bold p-10 pb-0">
           Search Results
         </h1>
 
@@ -71,21 +76,11 @@ export default function Search() {
                     <Link
                       to={"/book?bookName=" + book?.bookName}
                       key={index}
-                      className="p-4 flex gap-2 font-amatic-sc"
+                      className="p-4 pl-10 flex gap-2 font-amatic-sc"
                     >
-                      <img
-                        src={book?.imageUrl}
-                        alt={book?.bookName}
-                        className="h-70 object-cover mt-2"
-                      />
-                      <div>
-                        <h2 className="text-7xl font-bold">
-                          {book?.bookName} 
-                        </h2>
-                        <p className="text-gray-600 text-4xl">
-                          Author: {book?.authorName}
-                        </p>
-                      </div>
+                      
+                        <SearchMainBook book={book}></SearchMainBook>
+                    
                     </Link>
                   )
               )
@@ -113,19 +108,7 @@ export default function Search() {
                       key={index}
                       className="p-4 flex flex-col gap-2 font-amatic-sc"
                     >
-                      <img
-                        src={book?.imageUrl}
-                        alt={book?.bookName}
-                        className="w-35 object-cover mt-2"
-                      />
-                      <div>
-                        <h2 className="text-xl font-bold w-35">
-                          {book?.bookName} 
-                        </h2>
-                        <p className="text-gray-600  w-35">
-                          Author: {book?.authorName}
-                        </p>
-                      </div>
+                      <SimilarBook book={book}></SimilarBook>
                     </Link>
                   )
               )

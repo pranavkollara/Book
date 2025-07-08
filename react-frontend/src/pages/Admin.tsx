@@ -75,6 +75,21 @@ export default function Admin() {
         }
     }
     
+    const [deleteId, setDeleteId] = useState("");
+
+    async function deleteBook() {
+        try{
+            const response = await api.delete(`/book/deleteBookById/${deleteId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            console.log("Response from API:", response.data);
+        }catch (error) {
+            console.error("Error deleting book:", error);
+        }
+    }
 
     // "bookId": "SOL-001",
     // "bookName": "Norwegian Wood",
@@ -97,6 +112,7 @@ export default function Admin() {
       <ul className="menu bg-base-200 rounded-box w-56 h-screen">
     <li><a href={"#addBook"}>Add Book</a></li>
     <li><a href={"#updateBook"}>Update Book</a></li>
+    <li><a href={"#deleteBook"}>Delete Book</a></li>
     <li><button>Add Author</button></li>
     <li><button onClick={logout}>Logout</button></li>
     </ul>
@@ -157,6 +173,14 @@ export default function Admin() {
         </div>
         <div id="updateBook" className="w-full carousel-item h-screen">
             <h1 className="text-4xl font-seasons p-4 text-center">Update Book</h1>
+        </div>
+        <div id="deleteBook" className="w-full carousel-item h-screen flex flex-col">
+            <h1 className="text-4xl font-seasons p-4 text-center w-full">Delete Book</h1>
+            <div className="p-10">
+                <h1 className="text-xl font-seasons">Book Id</h1>
+                <input type="text" className="input font-seasons" onChange={(e) => setDeleteId(e.target.value)} />
+                <button className="btn text-center btn-error  max-w-50 m-4" onClick={deleteBook}>Delete Book</button>
+            </div>
         </div>
     </div>
     </div>

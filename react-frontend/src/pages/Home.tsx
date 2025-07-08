@@ -4,18 +4,23 @@ import api from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
+
 export default function Home() {
   const [bestsellers, setBestsellers] = useState([]);
   const [authors, setAuthors] = useState([]);
 
   async function fetchBestsellers() {
+    
     try {
       const response = await api.get("/book/topFiveBooks");
+      
       setBestsellers(response.data);
     } catch (error) {
       console.error("Error fetching bestsellers:", error);
     }
   }
+
+  
 
   async function fetchAuthors() {
     try {
@@ -40,7 +45,9 @@ export default function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchBestsellers();
+    
+    fetchBestsellers()
+   
     fetchAuthors();
     console.log("Bestsellers:", bestsellers);
     console.log("Authors:", authors);
@@ -65,19 +72,19 @@ export default function Home() {
           ></img>
         </div>
         <div className="font-seasons text-[10rem] text-[#00357a] flex flex-col">
-          <div className="-translate-y-30 -translate-x-65 transition-transform duration-300 ">
+          <div className="-translate-y-30 -translate-x-65 transition-transform duration-300 xl:block ">
             The
           </div>
-          <div className="-translate-y-60 -translate-x-25">Readers</div>
-          <div className="-translate-y-85">Circle</div>
-          <div className="text-xl w-80 -translate-y-82">
+          <div className="-translate-y-60 -translate-x-25 xl:block ">Readers</div>
+          <div className="-translate-y-85 xl:block ">Circle</div>
+          <div className="text-xl w-80 -translate-y-82 xl:block sm:hidden">
             Get inspired by our handpicked outfits. From casual to chic, find
             the perfect look for every occasion. Mix, match, and create your
             signature style with ease.
           </div>
           <Link
             to={"/genres"}
-            className="bg-[#17320b] rounded-lg max-w-40 text-xl text-center transform text-white p-2 -translate-y-70 translate-x-40"
+            className="bg-[#17320b] rounded-lg max-w-40 text-xl text-center transform text-white p-2 -translate-y-70 translate-x-40 xl:block sm:hidden"
           >
             START YOUR BOOK HUNT
           </Link>
