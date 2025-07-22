@@ -1,17 +1,63 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar';
 import { useAuth } from '../auth/AuthContext';
+import api from '../api/axios';
 
 export default function CreatePost() {
 
-    const { user } = useAuth();
+    const { token } = useAuth();
 
     const date = new Date();
     console.log("Current Date:", date.toLocaleDateString());
 
-    async function createPost() {
+    const [author, setAuthor] = useState(null);
+    const [postContent, setPostContent] = useState("");
 
+    async function fetchAuthor() {
+        try {
+            if (!token) {
+                return;
+            }
+            const response = await api("/auth/loadUser", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            
+            // Assuming the author data is in the response
+            console.log("Author data:", response.data);
+            setAuthor(response.data);
+        } catch (error) {
+            console.error("Error fetching author data:", error);
+        }
     }
+
+    async function createPost() {
+        try {
+            if (!author || !postContent) {
+                console.error("Author or post content is missing");
+                return;
+            }
+            const response = await api.post("/post/createPost", {
+                authorId: author.id,
+                content: postContent,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            console.log("Post created successfully:", response.data);
+            setPostContent(""); // Clear the input after successful post creation
+        } catch (error) {
+            console.error("Error creating post:", error);
+        }
+    }
+
+    useEffect(() => {
+        if (token) {
+            fetchAuthor();
+        }
+    }, [token]);
 
   return (
     <div className="bg-[url('/assests/login_background.png')] bg-cover bg-center h-[calc(100vh+90px)]">
@@ -29,14 +75,13 @@ export default function CreatePost() {
                         <div className='flex gap-4 items-center'>
                             <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" className='h-10 rounded-full'/>
                         <div className='flex flex-col justify-center'>
-                            <h1 className='font-amatic-sc font-bold text-3xl'>Authors Name</h1>
+                            <h1 className='font-amatic-sc font-bold text-3xl'>{author?.username}</h1>
                             <h1 className='font-amatic-sc text-xl'>{date.toLocaleDateString()}</h1>
                         </div>
                             </div>
                         <img src='/assests/authoralleybook.png' className='h-10 m-5'></img>
                     </div>
-                    <input className='w-[90%] h-80 mt-4 bg-[#103b32] rounded-4xl opacity-30 font-bold font-amatic-sc text-white align-text-top p-4 text-2xl placeholder:text-white placeholder:font-amatic-sc placeholder:font-bold' type='text' placeholder='Write your post here...'>
-                       
+                    <input onChange={(e) => setPostContent(e.target.value)} className='w-[90%] h-80 mt-4 bg-[#103b32] rounded-4xl opacity-30 font-bold font-amatic-sc text-white align-text-top p-4 text-2xl placeholder:text-white placeholder:font-amatic-sc placeholder:font-bold' type='text' placeholder='Write your post here...'>
                     </input>
                     <div>
                         <button className='bg-[#103b32]  text-white font-amatic-sc font-bold text-2xl rounded-xl px-8 py-2 mt-4 hover:bg-[#0c2a24]' onClick={createPost}>Create Post</button>

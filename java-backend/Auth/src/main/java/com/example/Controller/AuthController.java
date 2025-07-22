@@ -75,9 +75,19 @@ public class AuthController {
 		return userService.loadUserByUsername(username).getAuthorities();
 	}
 	
+	@GetMapping("/userRole")
+	public Collection<? extends GrantedAuthority> userRoleByToken(Principal principal){
+		return userService.loadUserByUsername(principal.getName()).getAuthorities();
+	}
+	
 	@GetMapping("/loadUser/{username}")
 	public ResponseEntity<UserDetails> loadUser(@PathVariable String username){
 		return ResponseEntity.ok(userService.loadUserByUsername(username));
+	}
+	
+	@GetMapping("/loadUser")
+	public ResponseEntity<UserDetails> loadUserByToken(Principal principal){
+		return ResponseEntity.ok(userService.loadUserByUsername(principal.getName()));
 	}
 	
 	

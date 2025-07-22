@@ -1,11 +1,14 @@
 package com.example.Service;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.example.Feign.UserInterface;
@@ -13,6 +16,7 @@ import com.example.Model.Post;
 import com.example.Repository.PostRepository;
 
 import jakarta.transaction.Transactional;
+
 
 @Service
 public class PostService {
@@ -23,11 +27,19 @@ public class PostService {
 	@Autowired
 	UserInterface userInterface;
 	
+	@Autowired
+	S3Client s3Client;
+	
+	@Value("${aws.bucketName}")
+	private String bucketName;
+	
 	@Transactional
 	public String createPost(Post post) {
 		postRepo.save(post);
 		return "Post Created with ID: "+post.getPostId();
 	}
+	
+	
 	
 	@Transactional
 	public Post updatePost(Post post,String postId) {

@@ -14,12 +14,13 @@ export default function Post() {
   
   async function fetchPosts() {
     try{
+      console.log("Fetching posts for user:", user); 
       const response =  user.followedAuthors.map((author) => api.get("/post/getPostByAuthorId/" + author));
       const postData = await Promise.all(response);
     
       const postsArray = postData.map((res) => res.data);
       console.log("Posts data:", postsArray);
-      setPosts(postsArray.flat()); // Flatten the array of arrays into a single array
+      setPosts(postsArray.flat()); 
     }
     
     catch (error) {

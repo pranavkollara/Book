@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 export default function Profile() {
 
-    const { user ,token} = useAuth();
+    const { user ,token , logout} = useAuth();
 
 
 
@@ -18,7 +18,11 @@ export default function Profile() {
           
           return;
         }
-        const response = await api.get("/auth/userRole/"+user.username);
+        const response = await api.get("/auth/userRole",{
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         console.log("Response from API:", response.data);
         if(response.data[0].authority !== "ROLE_AUTHOR"){return}
        
@@ -36,14 +40,23 @@ export default function Profile() {
         }
     },[])
 
-    const { logout } = useAuth();
+    
+
+    if(author){
+      return (
+        <>
+          <Link to={"/createPost"} className='btn bg-[#00357a] font-dm-sans shadow-none text-white border-none'>Create Post</Link>
+          <button onClick={logout} className='btn bg-[#a81111] font-dm-sans shadow-none text-white border-none'>Logout</button>
+        </>
+      )
+    }
 
 
     if (!user || !token ) {
         return <>
         <div className="flex gap-4">
-                    <a href="/login" className="btn bg-[#00357a] font-dm-sans shadow-none text-white border-none">LOGIN</a>
-                    <a href="/signup" className="btn bg-[#331d0f] font-dm-sans shadow-none text-white border-none">REGISTER</a>
+                    <Link to="/login" className="btn bg-[#00357a] font-dm-sans shadow-none text-white border-none">LOGIN</Link>
+                    <Link to="/signup" className="btn bg-[#331d0f] font-dm-sans shadow-none text-white border-none">REGISTER</Link>
                 </div>
         </>
     }
