@@ -18,7 +18,16 @@ export default function Post() {
       const response =  user.followedAuthors.map((author) => api.get("/post/getPostByAuthorId/" + author));
       const postData = await Promise.all(response);
     
-      const postsArray = postData.map((res) => res.data);
+      const postsArray = await Promise.all(postData.map(async (res) => {
+  const postList = res.data;
+  for (let post of postList) {
+    if (post.image) {
+      post.imageBlobUrl = await getImageBlobUrl(post.image);
+    }
+  }
+  return postList;
+}));
+
       console.log("Posts data:", postsArray);
       setPosts(postsArray.flat()); 
     }
@@ -40,6 +49,19 @@ export default function Post() {
       console.error("Error liking post:", error);
     }
   }
+
+  async function getImageBlobUrl(key) {
+  try {
+    const response = await api.get(`/post/image/${key}`, {
+      responseType: 'blob'
+    });
+    const blob = response.data;
+    return URL.createObjectURL(blob);
+  } catch (error) {
+    console.error("Failed to load image", error);
+    return null;
+  }
+}
 
   async function commentPost(postId, commentDesc) {
     try{
@@ -87,7 +109,11 @@ export default function Post() {
                    
           </div>
           </div>
-          <div className="w-2/3 h-[15rem] text-2xl flex flex-col p-2 text-white bg-[#3d170063] rounded-2xl">
+          
+          <div className="w-2/3 h-[15rem] text-2xl flex flex-col p-4 text-white bg-[#3d170063] rounded-2xl">
+            {post.image != null && (
+              <img className="h-[90%] object-contain " src={post.imageBlobUrl}></img>
+            )}
             {post.data}
           </div>
 

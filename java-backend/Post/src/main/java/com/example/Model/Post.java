@@ -16,6 +16,7 @@ public class Post {
 
 	@Id
 	private String postId;
+	private String image;
 	private String authorId;
 	private String authorName;
 	private String bookId;
@@ -92,6 +93,14 @@ public class Post {
 	}
 	public void addComment(Comment comment) {
 		this.comments.add(comment);
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 	

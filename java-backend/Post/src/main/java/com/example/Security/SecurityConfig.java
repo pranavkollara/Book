@@ -30,7 +30,7 @@ public class SecurityConfig {
 	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeHttpRequests().requestMatchers(HttpMethod.OPTIONS,"/**").permitAll().requestMatchers("/incCountByBookId/**","/decCountByBookId/**","/swagger-ui.html","/swagger-ui/index.html","/v3/api-docs/**","/swagger-ui/**").permitAll().anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.csrf().disable().authorizeHttpRequests().requestMatchers(HttpMethod.OPTIONS,"/**").permitAll().requestMatchers("/incCountByBookId/**","/decCountByBookId/**","/swagger-ui.html","/swagger-ui/index.html","/v3/api-docs/**","/swagger-ui/**","/image/**").permitAll().anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 		
 		return http.build();

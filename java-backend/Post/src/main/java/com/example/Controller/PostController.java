@@ -1,5 +1,6 @@
 package com.example.Controller;
 
+import org.springframework.http.MediaType;
 import java.security.Principal;
 import java.util.List;
 import java.util.Set;
@@ -25,6 +26,9 @@ import com.example.Model.Review;
 import com.example.Service.CommentService;
 import com.example.Service.PostService;
 import com.example.Service.ReviewService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 public class PostController {
@@ -58,9 +62,51 @@ public class PostController {
 	
 	@PreAuthorize("hasRole('AUTHOR')")
 	@PostMapping("/createPost")
-	public String createPost(@RequestBody Post post) {
-		postService.createPost(post);
+	public String createPost(@RequestParam String post) {
+		ObjectMapper mapper = new ObjectMapper();
+		
+		Post p = new Post();
+		try {
+			p=mapper.readValue(post, Post.class);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		postService.createPost(p);
 		return "Post Created";
+	}
+	
+	@PreAuthorize("hasRole('AUTHOR')")
+	@PostMapping("/createPostWI")
+	public String createPostWithImage(@RequestParam String post,@RequestParam MultipartFile file) {
+		ObjectMapper mapper = new ObjectMapper();
+		
+		Post p = new Post();
+		try {
+			p = mapper.readValue(post, Post.class);
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		postService.createPost(p,file);
+		return "Post Created";
+	}
+	
+	@GetMapping("/image/{key}")
+	public ResponseEntity<byte[]> image(@PathVariable String key){
+		byte[] img = postService.download(key);
+		
+		MediaType type = null;
+		if(key.toLowerCase().endsWith(".png")) type = MediaType.IMAGE_PNG;
+		if(key.toLowerCase().endsWith(".jpg")) type = MediaType.IMAGE_JPEG;
+		if(key.toLowerCase().endsWith(".jpeg")) type = MediaType.IMAGE_JPEG;
+		
+		
+		
+		return ResponseEntity.ok().contentType(type).body(img);
 	}
 	
 	@PreAuthorize("hasRole('AUTHOR')")
