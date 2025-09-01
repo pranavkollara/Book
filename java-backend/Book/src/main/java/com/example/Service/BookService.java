@@ -29,13 +29,12 @@ public class BookService {
 	@Transactional
 	public String addBooks(List<Book> book) {
 		book.forEach(b->bookRepo.save(b));
-		
 		return book.size() +"added to db";
 	}
 	
 	@Transactional
 	public Book getBookById(String bookId) {
-		return bookRepo.findById(bookId).orElseThrow();
+		return bookRepo.findById(bookId).orElseThrow(); 
 	}
 	
 	@Transactional

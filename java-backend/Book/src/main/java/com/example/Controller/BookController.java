@@ -51,11 +51,8 @@ public class BookController {
 	}
 	
 	@GetMapping("/mostPopularBook")
-	
 	public ResponseEntity<Book> mostPopularBook() {
-
 		Book book = bookService.mostPopularBook();
-
 		return ResponseEntity.ok(book);
 	}
 	

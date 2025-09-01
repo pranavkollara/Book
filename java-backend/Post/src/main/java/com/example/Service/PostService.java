@@ -73,14 +73,18 @@ public class PostService {
 	
 	@Transactional
 	public String createPost(Post post) {
-		
 		postRepo.save(post);
 		return "Post Created with ID: "+post.getPostId();
 	}
 	
+	
+	
+	
 	@Transactional
 	public String createPost(Post post,MultipartFile file) {
 		String url = upload(file);
+		
+		
 		post.setImage(url);
 		postRepo.save(post);
 		return "Post Created with ID: "+post.getPostId();
