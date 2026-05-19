@@ -1,0 +1,170 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: book-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: project
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ../Sql:/docker-entrypoint-initdb.d
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+      interval: 10s
+
+  # Eureka Service Registry
+  eureka:
+    build: .
+    container_name: eureka-server
+    environment:
+      - SERVICE=eureka
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-network
+    depends_on:
+      - mysql
+    command: java -jar /app/eureka.jar
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/"]
+      timeout: 20s
+      retries: 5
+      interval: 10s
+
+  # Auth Service
+  auth:
+    build: .
+    container_name: auth-service
+    environment:
+      - SERVICE=auth
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/project
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root123
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka:8761/eureka
+    ports:
+      - "8079:8079"
+    networks:
+      - microservices-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      eureka:
+        condition: service_healthy
+    command: java -jar /app/auth.jar
+
+  # Book Service
+  book:
+    build: .
+    container_name: book-service
+    environment:
+      - SERVICE=book
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/project?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root123
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka:8761/eureka
+    ports:
+      - "8080:8080"
+    networks:
+      - microservices-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      eureka:
+        condition: service_healthy
+    command: java -jar /app/book.jar
+
+  # Wishlist Service
+  wishlist:
+    build: .
+    container_name: wishlist-service
+    environment:
+      - SERVICE=wishlist
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/project
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root123
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka:8761/eureka
+    ports:
+      - "8081:8081"
+    networks:
+      - microservices-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      eureka:
+        condition: service_healthy
+    command: java -jar /app/wishlist.jar
+
+  # User Service
+  user:
+    build: .
+    container_name: user-service
+    environment:
+      - SERVICE=user
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/project
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root123
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka:8761/eureka
+    ports:
+      - "8083:8083"
+    networks:
+      - microservices-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      eureka:
+        condition: service_healthy
+    command: java -jar /app/user.jar
+
+  # Post Service
+  post:
+    build: .
+    container_name: post-service
+    environment:
+      - SERVICE=post
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/project
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root123
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka:8761/eureka
+    ports:
+      - "8084:8084"
+    networks:
+      - microservices-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      eureka:
+        condition: service_healthy
+    command: java -jar /app/post.jar
+
+  # API Gateway
+  gateway:
+    build: .
+    container_name: api-gateway
+    environment:
+      - SERVICE=gateway
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka:8761/eureka
+    ports:
+      - "8050:8050"
+    networks:
+      - microservices-network
+    depends_on:
+      eureka:
+        condition: service_healthy
+    command: java -jar /app/gateway.jar
+
+networks:
+  microservices-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local

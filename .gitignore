@@ -1,4 +1,50 @@
-*/.metadata/
-.metadata
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.iml
+*.log
 
-.gitignore
+# Node.js / React
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+react-frontend/dist/
+react-frontend/.env.local
+react-frontend/.env
+
+# Maven / Java
+*/target/
+**/.classpath
+**/.factorypath
+**/.project
+**/.settings/
+**/.springBeans
+**/.sts4-cache/
+**/local.properties
+**/.mvn/wrapper/maven-wrapper.jar
+**/.mvn/wrapper/maven-wrapper.properties
+
+# Environment & Configuration
+.env
+.env.local
+.env.*.local
+
+# OS files
+.metadata/
+*/.metadata/
+
+# Build artifacts & temporary files
+*.jar
+*.class
+*.exe
+*.dmg
+*.zip
+dist/
+build/
+
