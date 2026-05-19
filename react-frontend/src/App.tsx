@@ -24,7 +24,7 @@ export default function App() {
         <AuthProvider>
           
             <Routes>
-             
+                <Route path="/" element={<Navigate to="/home" replace />} />
                 <Route path="/login" element={<Login></Login>} />
                 <Route path="/signup" element={<Register></Register>} />
                 <Route path="/home" element={<Home></Home>} />
