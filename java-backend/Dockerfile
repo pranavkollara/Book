@@ -22,13 +22,12 @@ RUN cd Post && mvn clean package -DskipTests
 RUN cd User && mvn clean package -DskipTests
 RUN cd Wishlist && mvn clean package -DskipTests
 
-# Stage 2: Runtime images (base image for all services)
+# Stage 2: Runtime
 FROM eclipse-temurin:17-jre
 
-# Set working directory
 WORKDIR /app
 
-# Create a script to run the appropriate service based on environment variable
+# Copy all built JARs
 COPY --from=builder /app/Auth/target/*.jar /app/auth.jar
 COPY --from=builder /app/Book/target/*.jar /app/book.jar
 COPY --from=builder /app/Eureka/target/*.jar /app/eureka.jar
@@ -37,8 +36,12 @@ COPY --from=builder /app/Post/target/*.jar /app/post.jar
 COPY --from=builder /app/User/target/*.jar /app/user.jar
 COPY --from=builder /app/Wishlist/target/*.jar /app/wishlist.jar
 
-# Expose ports for all services
+# Copy startup script
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+
+# Expose all service ports
 EXPOSE 8050 8079 8080 8081 8083 8084 8761
 
-# Default command (can be overridden)
-CMD ["java", "-jar", "/app/eureka.jar"]
+# Run startup script that starts all services
+CMD ["/app/start.sh"]

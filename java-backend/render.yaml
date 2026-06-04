@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: book-backend
+    runtime: docker
+    dockerfilePath: ./java-backend/Dockerfile
+    startCommand: "./java-backend/start.sh"
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:mysql://your-mysql-host:3306/project
+      - key: SPRING_DATASOURCE_USERNAME
+        value: root
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: root123
+      - key: EUREKA_URL
+        value: http://localhost:8761/eureka
