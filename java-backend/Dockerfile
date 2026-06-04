@@ -40,6 +40,9 @@ COPY --from=builder /app/Wishlist/target/*.jar /app/wishlist.jar
 COPY start.sh /app/start.sh
 RUN chmod +x /app/start.sh
 
+# Set Java options for container memory awareness
+ENV JAVA_TOOL_OPTIONS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0"
+
 # Expose all service ports
 EXPOSE 8050 8079 8080 8081 8083 8084 8761
 
